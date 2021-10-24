@@ -18,6 +18,7 @@ async function monitor() {
             continue;
         }
         for (let i = signatures.length - 1; i >= 0; i--) {
+            if (i == 0) lastHash = signatures[i].signature;
             const tx = await connection.getParsedConfirmedTransaction(signatures[i].signature, 'confirmed');
             if (txUtils.isNullOrFailedTx(tx) || txUtils.isNotACollectionSale(tx)) continue;
 
@@ -30,8 +31,6 @@ async function monitor() {
             const tweetText = tweet.formatTweetText(decodedTx, nftMetadata, hash)
 
             await tweet.tweetWithImage(tweetText, imageUrl);
-
-            if (i == 0) lastHash = signatures[i].signature;
         }
         await utils.sleep(10000);
     }

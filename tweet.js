@@ -37,7 +37,10 @@ export async function tweetWithImage(tweetText, imageUrl) {
 
 // TODO: update
 export async function formatTweetText(decodedTx, nftMetadata, hash) {
-    return 
+    const text = 
 `${nftMetadata.name} sold for ${decodedTx.price} S◎L
-${constants.SOLANA_EXPORER_TX_BASE}${hash}`
+
+${constants.SOLANA_EXPORER_TX_BASE}${hash}`;
+   
+    return text;
 }
