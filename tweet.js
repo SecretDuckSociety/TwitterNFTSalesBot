@@ -1,7 +1,7 @@
 
 import twit from 'twit'; 
-import * as utils from './utils/Utils.js'
-import * as constants from './utils/Constants.js'
+import * as utils from './utils/utils.js'
+import * as constants from './utils/constants.js'
 
 const twitterClient = new twit(constants.twitterConfig);
 

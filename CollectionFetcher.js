@@ -1,7 +1,7 @@
 import { Connection, clusterApiUrl, PublicKey } from '@solana/web3.js';
 import base58 from 'bs58';
 import * as fs from 'fs';
-import * as constants from './utils/Constants.js';
+import * as constants from './utils/constants.js';
 
 async function getCollectionAccounts() {
     let connection = new Connection(clusterApiUrl('mainnet-beta'));

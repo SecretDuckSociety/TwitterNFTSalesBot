@@ -1,5 +1,5 @@
 import { LAMPORTS_PER_SOL } from '@solana/web3.js';
-import * as constants from './Constants.js';
+import * as constants from './constants.js';
 
 export async function getHashOfMostRecentConfirmedTx(connection, pubkey) {
     const limit = 1;

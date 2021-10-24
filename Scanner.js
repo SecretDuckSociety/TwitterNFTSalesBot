@@ -1,8 +1,8 @@
 import { Connection, PublicKey } from '@solana/web3.js';
 import fs from 'fs';
-import * as txUtils from './utils/TxUtils.js';
-import * as utils from './utils/Utils.js';
-import * as constants from './utils/Constants.js';
+import * as txUtils from './utils/txUtils.js';
+import * as utils from './utils/utils.js';
+import * as constants from './utils/constants.js';
 import * as tweet from './tweet.js';
 
 async function monitor() {
