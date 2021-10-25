@@ -11,7 +11,7 @@ export async function tweetWithImage(tweetText, imageUrl) {
     twitterClient.post('media/upload', { media_data: processedImage }, (err, data, response) => {
         if (!err) {
             const mediaIdStr = data.media_id_string;
-            const altText = `${Duck}`
+            const altText = ''
             const meta_params = { media_id: mediaIdStr, alt_text: { text: altText } }
             
             twitterClient.post('media/metadata/create', meta_params, function (err, data, response) {
