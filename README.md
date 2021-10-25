@@ -9,7 +9,7 @@
 
 ### About
 
-The is a javascript implementation for a Twitter NFT collection sales bot. It monitors secondary marketplaces for sales from a given collection and tweets about them. As of now, the bot only monitors Magic Eden, but functionality for other marketplaces is on the way.
+The is a javascript implementation for a Twitter Solana NFT collection sales bot. It monitors secondary marketplaces for sales from a given collection and tweets about them. As of now, the bot only monitors Magic Eden, but functionality for other marketplaces is on the way.
 
 Along with the bot comes a [Collection Fetcher](https://github.com/SecretDuckSociety/TwitterNFTSalesBot/blob/main/CollectionFetcher.js) that will generate a json file of the metadata from your NFT collection. Here is an example of the format the metadata for each NFT comes in.
 ```
