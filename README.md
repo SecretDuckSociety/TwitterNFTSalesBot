@@ -42,6 +42,6 @@ yarn install
 ### How to run the bot
 
 1. Fill in your .env file with the appropriate values. Note that due to rate limits, if you try to use the public endpoints (https://api.mainnet-beta.solana.com) for RPC_ENDPOINT you will likely be throttled. To use the current iteration of the code you need to use a custom endpoint that doesn't include rate limits.
-2. Visit the [constants file](https://github.com/SecretDuckSociety/TwitterNFTSalesBot/blob/main/utils/Constants.js) and change the NUM_CREATORS variable to match the number of creators for your collection. Your candy machine counts as a creator.
+2. Visit the [constants file](https://github.com/SecretDuckSociety/TwitterNFTSalesBot/blob/main/utils/constants.js) and change the NUM_CREATORS variable to match the number of creators for your collection. Your candy machine counts as a creator.
 3. Run `node -r dotenv/config CollectionFetcher.js` to fetch the metadata associated with your collection.
 4. Run `node -r dotenv/config Scanner.js` to fire up the bot. It will keep running until the process is killed (ctrl-c). Using [tmux](https://github.com/tmux/tmux) to run your bot is recommended. Alternatively, you could run it as a Heroku app (see [Heroku Remote](https://devcenter.heroku.com/articles/git#creating-a-heroku-remote)).
