@@ -6,7 +6,7 @@
 
 ### About
 
-The is a javascript implementation for a Twitter Solana NFT collection sales bot. It monitors secondary marketplaces for sales from a given collection and tweets about them. As of now, the bot only monitors Magic Eden, but functionality for other marketplaces is on the way.
+The is a javascript implementation for a Twitter Solana NFT collection sales bot. It monitors secondary marketplaces for sales from a given collection and tweets about them. As of now, the bot only monitors Magic Eden and Alpha Art, but functionality for other marketplaces is on the way.
 
 Along with the bot comes a [Collection Fetcher](https://github.com/SecretDuckSociety/TwitterNFTSalesBot/blob/main/CollectionFetcher.js) that will generate a json file of the metadata from your NFT collection. Here is an example of the format the metadata for each NFT comes in.
 ```
@@ -19,9 +19,9 @@ Along with the bot comes a [Collection Fetcher](https://github.com/SecretDuckSoc
 ```
 Note that the Collection Fetcher assumes your collections includes '#*number*' somewhere in the NFT names. This is used to generate the id field in the metadata. If your NFT collection does not follow this naming pattern, adjust the code accordingly to change/remove the id field.
 
-The scanner works by monitoring the address of a given marketplace. It continously uses the function [getConfirmedSignaturesForAddress2](https://solana-labs.github.io/solana-web3.js/classes/Connection.html#getConfirmedSignaturesForAddress2) to pull a list of the recent transactions for that address, and then filters these for transactions that are sales involving the desired NFT collection. 
+The scanner works by monitoring the addresses of secondary marketplaces. It continously uses the function [getConfirmedSignaturesForAddress2](https://solana-labs.github.io/solana-web3.js/classes/Connection.html#getConfirmedSignaturesForAddress2) to pull a list of the recent transactions for each marketplace address, and then filters these for transactions that are sales involving the desired NFT collection. 
 
-If the scanner detects a sale from the collection, it passes the appropriate information to [Tweet.js](https://github.com/SecretDuckSociety/TwitterNFTSalesBot/blob/main/Tweet.js) to handle Twitter functionality.
+If the scanner detects a sale from the collection, it passes the appropriate information to [tweet.js](https://github.com/SecretDuckSociety/TwitterNFTSalesBot/blob/main/tweet.js) to handle Twitter functionality.
 
 ### Prerequisites
 You must download some prerequisite software to be able to run this code:
