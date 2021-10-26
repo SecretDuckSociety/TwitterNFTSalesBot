@@ -1,10 +1,12 @@
 import * as BufferLayout from '@solana/buffer-layout';
 import { PublicKey } from '@solana/web3.js';
 
-export const UPDATE_AUTHORITY_PUBKEY = process.env.UPDATE_AUTHORITY;
 export const METAPLEX_PUBKEY = 'metaqbxxUerdq28cj1RbAWkYQm3ybzjb6a8bt518x1s';
+export const MAGIC_EDEN = "Magic Eden";
+export const ALPHA_ART = "Alpha Art";
 export const DIGITAL_EYES_ADDRESS = "F4ghBzHFNgJxV4wEQDchU5i7n4XWWMBSaq7CuswGiVsr"; // TODO
 export const MAGIC_EDEN_ADDRESS = "GUfCR9mK6azb9vcpsxgXyj7XRPAKJd4KMHTTVvtncGgp";
+export const ALPHA_ART_ADDRESS = "4pUQS4Jo2dsfWzt3VgHXy3H6RYnEDd11oWPiaM2rdAPw";
 export const RPC_ENDPOINT = process.env.RPC_ENDPOINT;
 export const SOLANA_EXPORER_TX_BASE = 'https://explorer.solana.com/tx/';
 

@@ -10,27 +10,39 @@ async function monitor() {
 
     const connection = new Connection(constants.RPC_ENDPOINT);
     const magicEdenPubkey = new PublicKey(constants.MAGIC_EDEN_ADDRESS);
-    let lastHash = await txUtils.getHashOfMostRecentConfirmedTx(connection, magicEdenPubkey);
-    console.log("Starting scan of Magic Eden")
+    const alphaArtPubkey = new PublicKey(constants.ALPHA_ART_ADDRESS);
+    let [lastMEHash, lastAAHash] = await Promise.all([txUtils.getHashOfMostRecentConfirmedTx(connection, magicEdenPubkey), 
+                                                      txUtils.getHashOfMostRecentConfirmedTx(connection, alphaArtPubkey)]);
+    monitorMarketPlace(constants.MAGIC_EDEN, lastMEHash, magicEdenPubkey, connection, collectionMetadata);
+    monitorMarketPlace(constants.ALPHA_ART, lastAAHash, alphaArtPubkey, connection, collectionMetadata);
+}
+
+
+
+async function monitorMarketPlace(marketplace, lastHash, pubkey, connection, collectionMetadata) {
+    console.log(`Starting scan of ${marketplace}`);
     while (true) {
         try {
-            const signatures = await connection.getConfirmedSignaturesForAddress2(magicEdenPubkey, {until: lastHash}, 'confirmed');
+            const signatures = await connection.getConfirmedSignaturesForAddress2(pubkey, {until: lastHash}, 'confirmed');
             if (signatures.length == 0) {
                 await utils.sleep(10000);
                 continue;
             }
+            console.log(`Scanning ${signatures.length} signatures from ${marketplace}`);
             for (let i = signatures.length - 1; i >= 0; i--) {
                 lastHash = signatures[i].signature;
                 const tx = await connection.getParsedConfirmedTransaction(signatures[i].signature, 'confirmed');
-                if (txUtils.isNullOrFailedTx(tx) || txUtils.isNotACollectionSale(tx)) continue;
+                if (txUtils.isNullOrFailedTx(tx) || !txUtils.isCollectionSale(tx, marketplace)) continue;
 
-                const decodedTx = txUtils.decodeSaleTx(tx);
+                const decodedTx = txUtils.decodeSaleTx(tx, marketplace);
                 const nftMetadata = getNftMetadataFromCollectionMetadata(decodedTx.mint, collectionMetadata);
                 if (nftMetadata == null) continue;
 
+                console.log(`Found sale from ${marketplace}`);
                 const hash = signatures[i].signature;
                 const imageUrl = await utils.fetchImageUri(nftMetadata.uri);
-                const tweetText = tweet.formatTweetText(decodedTx, nftMetadata, hash)
+                const tweetText = tweet.formatTweetText(decodedTx, nftMetadata, hash);
+                console.log(tweetText);
 
                 await tweet.tweetWithImage(tweetText, imageUrl);
             }
