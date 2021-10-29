@@ -19,8 +19,6 @@ Along with the bot comes a [Collection Fetcher](https://github.com/SecretDuckSoc
     "uri": "https://arweave.net/jZiFIUvG8cS9nAgiJ34mKxjGmvO8mfdKHsNaD4hEjhA",
     "address": "376bvNdBLagKgqmL7RcWnL3DeCUgk1ND2b4GRnc5NAKj"
 ```
-Note that the Collection Fetcher assumes your collections includes '#*number*' somewhere in the NFT names. This is used to generate the id field in the metadata. If your NFT collection does not follow this naming pattern, adjust the code accordingly to change/remove the id field.
-
 The scanner works by monitoring the addresses of secondary marketplaces. It continously uses the function [getConfirmedSignaturesForAddress2](https://solana-labs.github.io/solana-web3.js/classes/Connection.html#getConfirmedSignaturesForAddress2) to pull a list of the recent transactions for each marketplace address, and then filters these for transactions that are sales involving the desired NFT collection. 
 
 If the scanner detects a sale from the collection, it passes the appropriate information to [tweet.js](https://github.com/SecretDuckSociety/TwitterNFTSalesBot/blob/main/tweet.js) to handle Twitter functionality.
